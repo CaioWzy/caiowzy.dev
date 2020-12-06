@@ -8,7 +8,6 @@
 - [Pages](#pages)
 - [Navigation](#navigation)
 - [Disqus Comments](#disqus-comments)
-- [Google Analytics](#google-analytics)
 - [Social Media Links](#social-media-links)
 - [Update favicon](#update-favicon)
 
@@ -119,9 +118,7 @@ The navigation on the sidebar will automatically include all the links to the pa
 
 ### Disqus Comments
 
-Maxima Theme comes with Disqus comments enabled.
-
-Open `_includes/disqus.html` file, and change the `aspirethemes` value on line 15 with your [Disqus account shortname](https://help.disqus.com/customer/portal/articles/466208).
+Open `_includes/disqus.html` file, and change the `aspirethemes-demos` value on line `12` with your [Disqus account shortname](https://help.disqus.com/customer/portal/articles/466208).
 
 ```js
 s.src = '//aspirethemes-demo.disqus.com/embed.js';
@@ -136,10 +133,6 @@ s.src = '//exampleone.disqus.com/embed.js';
 That's all you need to setup Disqus from the theme side. If you get any issue regarding that comments are unable to load. First, make sure you have [registered your website with Disqus (Step 1)](https://help.disqus.com/customer/portal/articles/466182-publisher-quick-start-guide)
 
 And also check [Disqus troubleshooting guide](https://help.disqus.com/customer/portal/articles/472007-i-m-receiving-the-message-%22we-were-unable-to-load-disqus-%22) if you still have issues.
-
-### Google Analytics
-
-To integrate Google Analytics, open `_includes/analytics.html`, and add your Google Analytics code.
 
 ### Social Media Links
 
@@ -211,3 +204,9 @@ You can find the current favicon (favicon.ico) inside the theme root directory, 
 👉 Visit [**aspirethemes.com**](http://bit.ly/type-jekyll-github-link) for more Jekyll, Ghost, and WordPress themes.
 
 <img alt="Aspire Themes" src="https://user-images.githubusercontent.com/626005/63092640-afe17780-bf62-11e9-9ea9-546489bb282c.png">
+
+---
+
+<a href="https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=8G8PKPEADPD42&source=url">
+  <img src="https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif">
+</a>
