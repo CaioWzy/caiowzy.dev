@@ -1,0 +1,121 @@
+---
+layout: default
+---
+
+<div class='o-wrapper'>
+  <div class='o-grid'>
+    <div class='o-grid__col o-grid__col--full'>
+      <article class='c-post'>
+        <h1 class='c-post__title u-text-center'>{{ page.title }}</h1>
+
+        <div class='c-content'>
+          {{ content }}
+        </div>
+
+        {% assign radar = site.data.radar %}
+        <div class='c-radar' id='tech-radar'>
+          <div class='c-radar__controls'>
+            <div class='c-radar__filters' role='tablist' aria-label='Filter by quadrant'>
+              <button class='c-radar__filter is-active' type='button' data-quadrant='all'>All</button>
+              {% for q in radar.quadrants %}
+                <button class='c-radar__filter' type='button' data-quadrant='{{ q.id }}'>{{ q.name }}</button>
+              {% endfor %}
+            </div>
+
+            <div class='c-radar__legend' aria-label='Rings'>
+              {% for r in radar.rings %}
+                <span class='c-radar__legend-item'>
+                  <span class='c-radar__dot' style='background-color: {{ r.color }}'></span>
+                  {{ r.name }}
+                </span>
+              {% endfor %}
+            </div>
+          </div>
+
+          <div class='c-radar__viz-wrap'>
+            <div id='radar-viz' class='c-radar__viz'></div>
+            <div id='radar-tooltip' class='c-radar__tooltip' hidden></div>
+          </div>
+
+          <div class='c-radar__list'>
+            {% assign item_index = 0 %}
+            {% for q in radar.quadrants %}
+              <section class='c-radar__quadrant' data-quadrant='{{ q.id }}'>
+                <h2 class='c-radar__quadrant-title'>{{ q.name }}</h2>
+
+                {% for r in radar.rings %}
+                  {% assign ring_post_count = 0 %}
+                  {% for post in site.posts %}
+                    {% if post.radar.quadrant == q.id and post.radar.ring == r.id %}
+                      {% assign ring_post_count = ring_post_count | plus: 1 %}
+                    {% endif %}
+                  {% endfor %}
+
+                  {% if ring_post_count > 0 %}
+                    <div class='c-radar__ring-group'>
+                      <h3 class='c-radar__ring-title'>
+                        <span class='c-radar__dot' style='background-color: {{ r.color }}'></span>
+                        {{ r.name }}
+                      </h3>
+                      <ul class='o-plain-list c-radar__items'>
+                        {% for post in site.posts %}
+                          {% if post.radar.quadrant == q.id and post.radar.ring == r.id %}
+                            {% assign item_index = item_index | plus: 1 %}
+                            {% assign post_radar_name = post.radar.name | default: post.title %}
+                            {% assign post_radar_desc = post.radar.description | default: post.excerpt | strip_html | strip_newlines | truncate: 140 %}
+                            <li class='c-radar__item' data-blip-id='{{ item_index }}' data-quadrant='{{ q.id }}'>
+                              <span class='c-radar__item-num' style='border-color: {{ r.color }}; color: {{ r.color }}'>{{ item_index }}</span>
+                              <div class='c-radar__item-body'>
+                                <span class='c-radar__item-name'>
+                                  <a class='c-radar__item-link' href='{{ post.url | prepend: site.baseurl }}'>{{ post_radar_name }}</a>
+                                  {% if post.radar.moved == 1 %}
+                                    <span class='c-radar__move' title='Moved in'>&#9650;</span>
+                                  {% elsif post.radar.moved == -1 %}
+                                    <span class='c-radar__move' title='Moved out'>&#9660;</span>
+                                  {% elsif post.radar.moved == 'new' %}
+                                    <span class='c-radar__badge'>new</span>
+                                  {% endif %}
+                                </span>
+                                {% if post_radar_desc != '' %}
+                                  <p class='c-radar__item-desc'>{{ post_radar_desc }}</p>
+                                {% endif %}
+                              </div>
+                            </li>
+                          {% endif %}
+                        {% endfor %}
+                      </ul>
+                    </div>
+                  {% endif %}
+                {% endfor %}
+              </section>
+            {% endfor %}
+          </div>
+        </div>
+      </article>
+    </div>
+  </div>
+</div>
+
+<script type='application/json' id='radar-data'>
+{
+  "rings": {{ radar.rings | jsonify }},
+  "quadrants": {{ radar.quadrants | jsonify }},
+  "items": [
+    {%- assign first_json = true -%}
+    {%- for post in site.posts -%}
+      {%- if post.radar and post.radar.quadrant and post.radar.ring -%}
+        {%- unless first_json -%},{%- endunless -%}{%- assign first_json = false -%}
+        {
+          "name": {{ post.radar.name | default: post.title | jsonify }},
+          "quadrant": {{ post.radar.quadrant | jsonify }},
+          "ring": {{ post.radar.ring | jsonify }},
+          "moved": {{ post.radar.moved | default: 0 | jsonify }},
+          "description": {{ post.radar.description | default: post.excerpt | strip_html | strip_newlines | truncate: 140 | jsonify }},
+          "url": {{ post.url | prepend: site.baseurl | jsonify }}
+        }
+      {%- endif -%}
+    {%- endfor -%}
+  ]
+}
+</script>
+<script src="{{ '/js/radar.js' | prepend: site.baseurl }}"></script>

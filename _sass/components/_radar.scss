@@ -1,0 +1,226 @@
+/*------------------------------------*\
+  Components > Radar
+\*------------------------------------*/
+
+.c-radar {
+  margin-top: double($base-spacing-unit);
+
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: $base-spacing-unit;
+    margin-bottom: double($base-spacing-unit);
+  }
+
+  &__filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: half($base-spacing-unit);
+  }
+
+  &__filter {
+    padding: quarter($base-spacing-unit) $base-spacing-unit;
+    border: 1px solid $color-border;
+    background: $bg-color-white;
+    color: $color-text;
+    font-family: $font-base;
+    font-size: $font-size-tiny;
+    line-height: $line-height-medium;
+    cursor: pointer;
+    transition: $global-transition;
+
+    @include attention() {
+      border-color: $color-brand;
+      color: $color-brand;
+    }
+
+    &.is-active {
+      background: $color-text;
+      border-color: $color-text;
+      color: $color-white;
+    }
+  }
+
+  &__legend {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: $base-spacing-unit;
+    font-size: $font-size-tiny;
+    color: $color-gray;
+  }
+
+  &__legend-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  &__dot {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  &__viz-wrap {
+    position: relative;
+    margin: 0 auto double($base-spacing-unit);
+    max-width: 620px;
+  }
+
+  &__viz {
+    width: 100%;
+
+    svg {
+      display: block;
+      width: 100%;
+      height: auto;
+      overflow: visible;
+    }
+  }
+
+  &__tooltip {
+    position: absolute;
+    z-index: 10;
+    pointer-events: none;
+    padding: 6px 10px;
+    background: $color-text;
+    color: $color-white;
+    font-size: $font-size-tiny;
+    line-height: $line-height-tiny;
+    white-space: nowrap;
+    transform: translate(-50%, -125%);
+  }
+
+  &__blip {
+    cursor: pointer;
+    transition: opacity $global-transition;
+
+    &.is-dimmed {
+      opacity: 0.2;
+    }
+  }
+
+  &__list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: double($base-spacing-unit);
+    padding-top: double($base-spacing-unit);
+    border-top: 1px solid $color-border;
+
+    @include mq($from: tablet) {
+      grid-template-columns: 1fr 1fr;
+    }
+  }
+
+  &__quadrant {
+    &.is-hidden {
+      display: none;
+    }
+  }
+
+  &__quadrant-title {
+    font-size: $font-size-medium;
+    font-weight: $font-weight-bold;
+    margin-bottom: $base-spacing-unit;
+    padding-bottom: half($base-spacing-unit);
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__ring-group {
+    margin-bottom: $base-spacing-unit;
+  }
+
+  &__ring-title {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: $font-size-tiny;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: $color-gray;
+    margin-bottom: half($base-spacing-unit);
+  }
+
+  &__item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 6px 8px;
+    margin-left: -8px;
+    border-radius: 2px;
+    transition: background-color $global-transition;
+
+    &.is-highlighted {
+      background-color: $bg-color-gray;
+    }
+  }
+
+  &__item-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 22px;
+    height: 22px;
+    flex-shrink: 0;
+    margin-top: 2px;
+    border: 1px solid $color-border;
+    border-radius: 50%;
+    font-size: 11px;
+    font-weight: $font-weight-bold;
+    line-height: 1;
+  }
+
+  &__item-body {
+    min-width: 0;
+  }
+
+  &__item-name {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: $font-size-small;
+    font-weight: $font-weight-bold;
+    line-height: $line-height-small;
+  }
+
+  &__item-link {
+    text-decoration: underline;
+    text-decoration-color: $color-border;
+    text-underline-offset: 3px;
+    transition: $global-transition;
+
+    @include attention() {
+      color: $color-brand;
+      text-decoration-color: $color-brand;
+    }
+  }
+
+  &__item-desc {
+    margin: 2px 0 0;
+    font-size: $font-size-small;
+    line-height: $line-height-small;
+    color: $color-gray;
+  }
+
+  &__move {
+    font-size: 10px;
+    color: $color-gray;
+  }
+
+  &__badge {
+    padding: 1px 6px;
+    background: $bg-color-gray;
+    border: 1px solid $color-border;
+    font-size: 10px;
+    font-weight: $font-weight-bold;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    color: $color-brand;
+  }
+}

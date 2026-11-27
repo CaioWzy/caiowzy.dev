@@ -1,0 +1,23 @@
+rings:
+  - id: adopt
+    name: Adopt
+    color: "#00A0FF"
+  - id: trial
+    name: Trial
+    color: "#2B5F72"
+  - id: assess
+    name: Assess
+    color: "#6B7C8A"
+  - id: hold
+    name: Hold
+    color: "#B0BEC5"
+
+quadrants:
+  - id: languages-frameworks
+    name: Languages & Frameworks
+  - id: platforms
+    name: Platforms & Infra
+  - id: tools
+    name: Tools
+  - id: techniques
+    name: Techniques
