@@ -1,0 +1,45 @@
+---
+layout: null
+---
+[
+  {%- assign first = true -%}
+  {%- for post in site.posts -%}
+    {%- unless first -%},{%- endunless -%}{%- assign first = false -%}
+    {
+      "type": "post",
+      "title": {{ post.title | jsonify }},
+      "url": {{ post.url | prepend: site.baseurl | jsonify }},
+      "date": {{ post.date | date: "%d %b %Y" | jsonify }},
+      "tags": {{ post.tags | jsonify }},
+      "radar": {% if post.radar %}{{ post.radar.ring | append: " · " | append: post.radar.quadrant | jsonify }}{% else %}null{% endif %},
+      "excerpt": {{ post.excerpt | strip_html | strip_newlines | truncate: 120 | jsonify }}
+    }
+  {%- endfor -%}
+  {%- for page in site.pages -%}
+    {%- if page.title and page.name != '404.md' -%}
+      {%- unless first -%},{%- endunless -%}{%- assign first = false -%}
+      {
+        "type": "page",
+        "title": {{ page.title | jsonify }},
+        "url": {{ page.url | prepend: site.baseurl | jsonify }},
+        "date": null,
+        "tags": [],
+        "radar": null,
+        "excerpt": "Page"
+      }
+    {%- endif -%}
+  {%- endfor -%}
+  {%- for tag in site.tags -%}
+    {%- assign tag_name = tag[0] -%}
+    {%- unless first -%},{%- endunless -%}{%- assign first = false -%}
+    {
+      "type": "tag",
+      "title": {{ "#" | append: tag_name | jsonify }},
+      "url": {{ "/tag/" | append: tag_name | prepend: site.baseurl | jsonify }},
+      "date": null,
+      "tags": [{{ tag_name | jsonify }}],
+      "radar": null,
+      "excerpt": {{ tag[1].size | append: " post(s)" | jsonify }}
+    }
+  {%- endfor -%}
+]

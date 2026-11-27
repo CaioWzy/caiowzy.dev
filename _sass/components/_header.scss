@@ -11,4 +11,11 @@
   &__icon {
     vertical-align: middle;
   }
+
+  &__nav {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: half($base-spacing-unit);
+  }
 }

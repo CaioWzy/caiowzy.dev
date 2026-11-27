@@ -1,0 +1,17 @@
+<div class='c-search' id='search-modal' hidden role='dialog' aria-modal='true' aria-label='Search' data-search-url="{{ '/search.json' | prepend: site.baseurl }}">
+  <div class='c-search__backdrop' data-search-close></div>
+  <div class='c-search__dialog'>
+    <div class='c-search__input-wrap'>
+      <input
+        type='search'
+        id='search-input'
+        class='c-search__input'
+        placeholder='Search posts, tags, radar...'
+        autocomplete='off'
+        aria-label='Search posts, tags, radar'
+      >
+      <kbd class='c-search__kbd'>esc</kbd>
+    </div>
+    <ul class='o-plain-list c-search__results' id='search-results' role='listbox'></ul>
+  </div>
+</div>

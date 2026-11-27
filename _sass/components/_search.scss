@@ -1,0 +1,133 @@
+/*------------------------------------*\
+  Components > Search
+\*------------------------------------*/
+
+.c-search-trigger {
+  padding: 2px 7px;
+  border: 1px solid $color-border;
+  background: $bg-color-white;
+  color: $color-gray;
+  font-family: $font-monospace;
+  font-size: $font-size-tiny;
+  line-height: 1.4;
+  cursor: pointer;
+  transition: $global-transition;
+
+  @include attention() {
+    border-color: $color-brand;
+    color: $color-brand;
+  }
+}
+
+.c-search {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: quadruple($base-spacing-unit) $base-spacing-unit $base-spacing-unit;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &__backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(50, 50, 50, 0.25);
+  }
+
+  &__dialog {
+    position: relative;
+    width: 100%;
+    max-width: 560px;
+    background: $bg-color-white;
+    border: 1px solid $color-border;
+    box-shadow: 0 12px 32px rgba(0, 0, 0, 0.08);
+  }
+
+  &__input-wrap {
+    display: flex;
+    align-items: center;
+    gap: half($base-spacing-unit);
+    padding: 12px $base-spacing-unit;
+    border-bottom: 1px solid $color-border;
+  }
+
+  &__input {
+    width: 100%;
+    border: 0;
+    padding: 0;
+    background: transparent;
+    color: $color-text;
+    font-family: $font-base;
+    font-size: $font-size-medium;
+    line-height: $line-height-medium;
+    outline: none;
+  }
+
+  &__kbd {
+    padding: 2px 6px;
+    border: 1px solid $color-border;
+    background: $bg-color-gray;
+    color: $color-gray;
+    font-family: $font-monospace;
+    font-size: 11px;
+    line-height: 1.2;
+  }
+
+  &__results {
+    max-height: 360px;
+    overflow-y: auto;
+  }
+
+  &__item {
+    border-bottom: 1px solid $color-border;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    &.is-active {
+      background: $bg-color-gray;
+
+      .c-search__title {
+        color: $color-brand;
+      }
+    }
+  }
+
+  &__link {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: $base-spacing-unit;
+    padding: 10px $base-spacing-unit;
+    transition: $global-transition;
+
+    @include attention() {
+      text-decoration: none;
+      background: $bg-color-gray;
+    }
+  }
+
+  &__title {
+    font-size: $font-size-small;
+    font-weight: $font-weight-bold;
+    color: $color-text;
+  }
+
+  &__meta {
+    flex-shrink: 0;
+    font-size: $font-size-tiny;
+    color: $color-gray;
+  }
+
+  &__empty {
+    padding: $base-spacing-unit;
+    font-size: $font-size-small;
+    color: $color-gray;
+    text-align: center;
+  }
+}
