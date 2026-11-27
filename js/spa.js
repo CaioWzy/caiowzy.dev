@@ -34,6 +34,9 @@
     if (isNavigating) return;
     isNavigating = true;
 
+    var searchModal = document.getElementById('search-modal');
+    if (searchModal) searchModal.hidden = true;
+
     fetch(targetUrl.href, { headers: { 'X-Requested-With': 'spa' } })
       .then(function (res) {
         if (!res.ok) throw new Error('HTTP ' + res.status);
