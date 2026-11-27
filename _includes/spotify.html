@@ -1,9 +1,23 @@
-<div class='c-spotify'>
-  <a href='https://spotify-github-profile.kittinanx.com/api/view?uid=caiowzy&redirect=true' target='_blank' rel='noopener noreferrer' aria-label='Spotify Now Playing'>
+<div class='c-spotify' id='spotify-widget'>
+  <div class='c-spotify__label' id='spotify-label' hidden><span class='c-spotify__icon' data-icon='ei-play' data-size='s'></span><span class='c-spotify__text'>I'm listening on Spotify</span><span class='c-spotify__hover'>Click to open Spotify</span></div>
+  <a href='https://spotify-github-profile.kittinanx.com/api/view?uid=caiowzy&redirect=true' target='_blank' rel='noopener noreferrer' aria-label='Click to open Spotify' title='Click to open Spotify'>
     <img
+      id='spotify-img'
       src='https://spotify-github-profile.kittinanx.com/api/view?uid=caiowzy&cover_image=true&theme=novatorem&show_offline=false&background_color=ffffff&interchange=false&profanity=true&hide_remaster=true&bar_color=323232&bar_color_cover=false'
       alt='Spotify Now Playing'
       loading='lazy'
     >
   </a>
 </div>
+<script>
+  (function () {
+    var img = document.getElementById('spotify-img');
+    var label = document.getElementById('spotify-label');
+    if (!img || !label) return;
+    function syncLabel() {
+      label.hidden = !(img.naturalHeight > 10);
+    }
+    if (img.complete) syncLabel();
+    else img.addEventListener('load', syncLabel);
+  })();
+</script>
