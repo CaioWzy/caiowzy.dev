@@ -3,11 +3,71 @@
 \*------------------------------------*/
 
 .c-content {
-  a:not(.c-btn) {
+  a:not(.c-btn):not(.c-heading-anchor) {
     text-decoration: underline;
     text-decoration-skip: ink;
 
     @include attention() {
+      color: $color-brand;
+    }
+  }
+
+  .c-code-wrap {
+    position: relative;
+
+    &:hover .c-copy-btn,
+    &:focus-within .c-copy-btn {
+      opacity: 1;
+    }
+  }
+
+  .c-copy-btn {
+    position: absolute;
+    top: half($base-spacing-unit);
+    right: half($base-spacing-unit);
+    padding: 2px 8px;
+    border: 1px solid $color-border;
+    background: $bg-color-white;
+    color: $color-gray;
+    font-family: $font-monospace;
+    font-size: 11px;
+    line-height: 1.4;
+    cursor: pointer;
+    opacity: 0;
+    transition: $global-transition;
+
+    @include attention() {
+      opacity: 1;
+      border-color: $color-brand;
+      color: $color-brand;
+    }
+
+    &.is-copied {
+      opacity: 1;
+      border-color: $color-brand;
+      color: $color-brand;
+    }
+  }
+
+  h2,
+  h3,
+  h4 {
+    &:hover .c-heading-anchor,
+    &:focus-within .c-heading-anchor {
+      opacity: 1;
+    }
+  }
+
+  .c-heading-anchor {
+    margin-left: half($base-spacing-unit);
+    color: $color-gray;
+    font-weight: $font-weight-regular;
+    text-decoration: none;
+    opacity: 0;
+    transition: $global-transition;
+
+    @include attention() {
+      opacity: 1;
       color: $color-brand;
     }
   }
