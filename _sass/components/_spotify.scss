@@ -1,0 +1,28 @@
+/*------------------------------------*\
+  Components > Spotify Floating Player
+\*------------------------------------*/
+
+.c-spotify {
+  position: fixed;
+  left: $base-spacing-unit;
+  bottom: $base-spacing-unit;
+  z-index: 40;
+  max-width: 240px;
+  background: $bg-color-white;
+  border: 1px solid $color-border;
+  line-height: 0;
+
+  @include mq($from: tablet) {
+    max-width: 280px;
+  }
+
+  a {
+    display: block;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: auto;
+  }
+}
