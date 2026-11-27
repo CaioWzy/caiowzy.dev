@@ -103,6 +103,11 @@
     renderResults(input.value);
   });
 
+  resultsEl.addEventListener('click', function (e) {
+    var link = e.target.closest('.c-search__link');
+    if (link) closeSearch();
+  });
+
   input.addEventListener('keydown', function (e) {
     if (e.key === 'ArrowDown') {
       e.preventDefault();
@@ -114,7 +119,10 @@
       var activeLink = resultsEl.querySelector('.c-search__item.is-active .c-search__link');
       if (activeLink) {
         e.preventDefault();
-        window.location.href = activeLink.getAttribute('href');
+        var href = activeLink.getAttribute('href');
+        closeSearch();
+        if (window.spaNavigate) window.spaNavigate(href);
+        else window.location.href = href;
       }
     }
   });

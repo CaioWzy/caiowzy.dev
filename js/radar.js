@@ -1,8 +1,11 @@
 (function () {
-  var dataEl = document.getElementById('radar-data');
-  var vizEl = document.getElementById('radar-viz');
-  var tooltipEl = document.getElementById('radar-tooltip');
-  if (!dataEl || !vizEl) return;
+  function initRadar() {
+    var dataEl = document.getElementById('radar-data');
+    var vizEl = document.getElementById('radar-viz');
+    var tooltipEl = document.getElementById('radar-tooltip');
+    if (!dataEl || !vizEl) return;
+
+    vizEl.innerHTML = '';
 
   var data = JSON.parse(dataEl.textContent);
   var rings = data.rings || [];
@@ -292,4 +295,8 @@
       });
     });
   });
+  }
+
+  window.initRadar = initRadar;
+  initRadar();
 })();

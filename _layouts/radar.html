@@ -100,28 +100,27 @@ layout: default
       </article>
     </div>
   </div>
-</div>
 
-<script type='application/json' id='radar-data'>
-{
-  "rings": {{ radar.rings | jsonify }},
-  "quadrants": {{ radar.quadrants | jsonify }},
-  "items": [
-    {%- assign first_json = true -%}
-    {%- for post in site.posts -%}
-      {%- if post.radar and post.radar.quadrant and post.radar.ring -%}
-        {%- unless first_json -%},{%- endunless -%}{%- assign first_json = false -%}
-        {
-          "name": {{ post.radar.name | default: post.title | jsonify }},
-          "quadrant": {{ post.radar.quadrant | jsonify }},
-          "ring": {{ post.radar.ring | jsonify }},
-          "moved": {{ post.radar.moved | default: 0 | jsonify }},
-          "description": {{ post.radar.description | default: post.excerpt | strip_html | strip_newlines | truncate: 140 | jsonify }},
-          "url": {{ post.url | prepend: site.baseurl | jsonify }}
-        }
-      {%- endif -%}
-    {%- endfor -%}
-  ]
-}
-</script>
-<script src="{{ '/js/radar.js' | prepend: site.baseurl }}"></script>
+  <script type='application/json' id='radar-data'>
+  {
+    "rings": {{ radar.rings | jsonify }},
+    "quadrants": {{ radar.quadrants | jsonify }},
+    "items": [
+      {%- assign first_json = true -%}
+      {%- for post in site.posts -%}
+        {%- if post.radar and post.radar.quadrant and post.radar.ring -%}
+          {%- unless first_json -%},{%- endunless -%}{%- assign first_json = false -%}
+          {
+            "name": {{ post.radar.name | default: post.title | jsonify }},
+            "quadrant": {{ post.radar.quadrant | jsonify }},
+            "ring": {{ post.radar.ring | jsonify }},
+            "moved": {{ post.radar.moved | default: 0 | jsonify }},
+            "description": {{ post.radar.description | default: post.excerpt | strip_html | strip_newlines | truncate: 140 | jsonify }},
+            "url": {{ post.url | prepend: site.baseurl | jsonify }}
+          }
+        {%- endif -%}
+      {%- endfor -%}
+    ]
+  }
+  </script>
+</div>
