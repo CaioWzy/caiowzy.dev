@@ -8,6 +8,10 @@
     font-weight: $font-weight-bolder;
     transition: $global-transition;
 
+    &--current {
+      color: $color-brand;
+    }
+
     @include attention() {
       color: $color-brand;
       text-decoration: none;
