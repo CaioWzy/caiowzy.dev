@@ -50,12 +50,21 @@
     gap: $base-spacing-unit;
     font-size: $font-size-tiny;
     color: $color-gray;
+
+    &--shapes {
+      opacity: 0.8;
+    }
   }
 
   &__legend-item {
     display: inline-flex;
     align-items: center;
     gap: 6px;
+  }
+
+  &__shape {
+    font-size: 10px;
+    line-height: 1;
   }
 
   &__dot {
