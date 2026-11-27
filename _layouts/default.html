@@ -10,11 +10,12 @@
 
     {{ content }}
 
+    {% include spotify.html %}
+
     {% include footer.html %}
   </div>
 
   {% include search.html %}
-  {% include spotify.html %}
 
   <script src="{{ '/js/jquery-3.1.1.min.js' | prepend: site.baseurl }}"> </script>
   <script src="{{ '/js/evil-icons.min.js' | prepend: site.baseurl }}">   </script>

@@ -3,17 +3,21 @@
 \*------------------------------------*/
 
 .c-spotify {
-  position: fixed;
-  left: $base-spacing-unit;
-  bottom: $base-spacing-unit;
-  z-index: 40;
-  max-width: 240px;
+  margin: 0 auto double($base-spacing-unit);
+  max-width: 300px;
+  width: calc(100% - #{double($base-spacing-unit)});
   background: $bg-color-white;
   border: 1px solid $color-border;
   line-height: 0;
 
-  @include mq($from: tablet) {
+  @include mq($from: desktop) {
+    position: fixed;
+    left: $base-spacing-unit;
+    bottom: $base-spacing-unit;
+    z-index: 40;
+    margin: 0;
     max-width: 280px;
+    width: auto;
   }
 
   a {
